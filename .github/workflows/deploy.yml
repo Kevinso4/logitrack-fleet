@@ -5,10 +5,10 @@ name: CI-CD fleet
 on:
   push:
     branches: [main]
-    paths: ["services/fleet/**", "services/common/**", "services/requirements.txt", "services/Dockerfile", ".github/workflows/fleet.yml"]
+    paths: ["fleet/**", "common/**", "requirements.txt", "Dockerfile", ".github/workflows/deploy.yml"]
   pull_request:
     branches: [main]
-    paths: ["services/fleet/**", "services/common/**", "services/requirements.txt", "services/Dockerfile"]
+    paths: ["fleet/**", "common/**", "requirements.txt", "Dockerfile"]
   workflow_dispatch:
 
 permissions:
@@ -20,9 +20,9 @@ jobs:
     uses: Kevinso4/logitrack-pipelines/.github/workflows/ci.yml@main
     with:
       service-name: fleet
-      directorio: services
-      imagen: ghcr.io/kevinso4/tracklogi-fleet
-      desplegar: false
+      directorio: "."
+      imagen: ghcr.io/kevinso4/logitrack-fleet
+      desplegar: true
       url: https://tracklogi-fleet.onrender.com
       render-service-id: srv-daqqf65g1s2s73eijfug
     secrets: inherit
